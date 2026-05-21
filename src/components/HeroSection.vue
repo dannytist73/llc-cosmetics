@@ -1,28 +1,43 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, inject, watch, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { useMagnetic } from '@/composables/useMagnetic.js'
+
+const siteReady = inject('siteReady', ref(true))
 
 const scrollIndicator = ref(null)
 const { el: bookBtn, onMouseEnter: bookEnter, onMouseLeave: bookLeave } = useMagnetic(0.4)
 const { el: exploreBtn, onMouseEnter: exploreEnter, onMouseLeave: exploreLeave } = useMagnetic(0.4)
 
 let bounceTween = null
+let heroPlayed = false
+
 const hideIndicator = () => {
   if (window.scrollY > 200) gsap.to(scrollIndicator.value, { opacity: 0, duration: 0.3 })
 }
 
-onMounted(() => {
+const playHeroIntro = () => {
+  if (heroPlayed) return
+  heroPlayed = true
+
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
-  tl.from('.hero-line', { y: '110%', duration: 1.2, stagger: 0.15, delay: 0.3 })
-    .from('.hero-sub',  { y: 20, opacity: 0, duration: 0.8 }, '-=0.4')
+  tl.from('.hero-line', { y: '110%', duration: 1.2, stagger: 0.15, delay: 0.2 })
+    .from('.hero-sub', { y: 20, opacity: 0, duration: 0.8 }, '-=0.4')
     .from('.hero-ctas', { y: 20, opacity: 0, duration: 0.8 }, '-=0.5')
     .from('.hero-badge', { y: 10, opacity: 0, duration: 0.6 }, '-=0.4')
 
-  bounceTween = gsap.to(scrollIndicator.value, {
-    y: 10, duration: 0.9, repeat: -1, yoyo: true, ease: 'power1.inOut',
-  })
+  if (scrollIndicator.value) {
+    bounceTween = gsap.to(scrollIndicator.value, {
+      y: 10, duration: 0.9, repeat: -1, yoyo: true, ease: 'power1.inOut',
+    })
+  }
+}
 
+watch(siteReady, (ready) => {
+  if (ready) playHeroIntro()
+}, { immediate: true })
+
+onMounted(() => {
   window.addEventListener('scroll', hideIndicator, { passive: true })
 })
 
