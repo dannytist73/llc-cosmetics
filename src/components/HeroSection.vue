@@ -35,8 +35,8 @@ onUnmounted(() => {
 <template>
   <section class="relative min-h-[100dvh] flex items-end overflow-hidden bg-charcoal">
     <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto"
-      poster="/video/consult-video-poster.png">
-      <source src="/video/consult-video.mp4" type="video/mp4" />
+      poster="/video/hero-video-poster.jpg">
+      <source src="/video/hero-video.mp4" type="video/mp4" />
     </video>
 
     <div class="absolute inset-0 bg-gradient-to-r from-charcoal/85 via-charcoal/55 to-charcoal/25"></div>

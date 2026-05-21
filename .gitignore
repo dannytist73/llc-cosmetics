@@ -1,3 +1,11 @@
 node_modules/
 dist/
 .DS_Store
+.claude/
+.superpowers/
+SITE_CONTENT.md
+_homepage.html
+_media-urls.txt
+docs/
+download-hero-video.ps1
+download-media.ps1
