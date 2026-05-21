@@ -9,3 +9,10 @@ _media-urls.txt
 docs/
 download-hero-video.ps1
 download-media.ps1
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
