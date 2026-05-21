@@ -12,7 +12,7 @@ import AppFooter from './components/AppFooter.vue'
 </script>
 
 <template>
-  <div class="relative overflow-x-hidden">
+  <div class="relative overflow-x-clip">
     <AppNav />
     <main>
       <HeroSection />

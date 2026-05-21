@@ -64,7 +64,8 @@ onUnmounted(() => {
       >
         <img :src="service.image" :alt="service.name"
           class="absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-r from-charcoal/82 via-charcoal/45 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/60 to-charcoal/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-24 w-full">
           <div class="inline-flex items-center px-3 py-1.5 border border-gold/30 bg-gold/10 text-gold text-xs font-body tracking-wider uppercase mb-5 rounded-sm">
@@ -73,7 +74,7 @@ onUnmounted(() => {
           <h2 class="font-display font-semibold text-cream leading-none tracking-tighter text-5xl md:text-7xl lg:text-8xl mb-5">
             {{ service.name }}
           </h2>
-          <p class="text-cream/60 font-body font-light text-sm md:text-base max-w-md leading-relaxed mb-8">
+          <p class="text-cream/80 font-body font-light text-sm md:text-base max-w-md leading-relaxed mb-8">
             {{ service.desc }}
           </p>
           <a href="https://bookings.gettimely.com/llccosmetic/bb/book"
