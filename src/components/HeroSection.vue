@@ -21,10 +21,10 @@ const playHeroIntro = () => {
   heroPlayed = true
 
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
-  tl.from('.hero-line', { y: '110%', duration: 1.2, stagger: 0.15, delay: 0.2 })
-    .from('.hero-sub', { y: 20, opacity: 0, duration: 0.8 }, '-=0.4')
-    .from('.hero-ctas', { y: 20, opacity: 0, duration: 0.8 }, '-=0.5')
-    .from('.hero-badge', { y: 10, opacity: 0, duration: 0.6 }, '-=0.4')
+  tl.fromTo('.hero-line',   { y: '110%' },        { y: '0%', duration: 1.2, stagger: 0.15, delay: 0.2 })
+    .fromTo('.hero-sub',   { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, '-=0.4')
+    .fromTo('.hero-ctas',  { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, '-=0.5')
+    .fromTo('.hero-badge', { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.4')
 
   if (scrollIndicator.value) {
     bounceTween = gsap.to(scrollIndicator.value, {
@@ -38,6 +38,10 @@ watch(siteReady, (ready) => {
 }, { immediate: true })
 
 onMounted(() => {
+  // Pre-position to "from" state so elements are hidden when loader curtains reveal the hero
+  gsap.set('.hero-line', { y: '110%' })
+  gsap.set(['.hero-sub', '.hero-ctas', '.hero-badge'], { opacity: 0, y: 20 })
+
   window.addEventListener('scroll', hideIndicator, { passive: true })
 })
 

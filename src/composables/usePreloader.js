@@ -1,6 +1,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const MIN_MS = 1600
+const MIN_MS = 900
 const MAX_MS = 9000
 
 /**
