@@ -15,6 +15,9 @@ const team = [
   { name: 'Moseka',              role: 'Dermal Therapist',  cred: 'DT',            image: '/staff/moseka.webp'       },
 ]
 
+const featured = team.slice(0, 2)
+const rest = team.slice(2)
+
 onMounted(() => {
   gsap.from('.team-card', {
     y: 40, opacity: 0, duration: 0.7, stagger: 0.07, ease: 'power3.out',
@@ -33,15 +36,33 @@ onMounted(() => {
         </h2>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1.5">
-        <div v-for="member in team" :key="member.name"
-          class="team-card relative overflow-hidden group cursor-default">
+      <!-- Featured: Dr. Yousef & Diana -->
+      <div class="grid grid-cols-2 gap-1.5 mb-1.5">
+        <div v-for="member in featured" :key="member.name"
+          class="team-card relative overflow-hidden cursor-default">
           <div class="aspect-[3/4]">
             <img :src="member.image" :alt="member.name"
-              class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500" />
+              class="w-full h-full object-cover object-top" />
           </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 md:p-7">
+            <div class="text-cream font-body font-semibold text-base md:text-lg leading-tight">{{ member.name }}</div>
+            <div class="text-gold text-xs font-body tracking-wider uppercase mt-1">{{ member.role }}</div>
+            <div class="text-cream/55 text-xs font-body mt-0.5">{{ member.cred }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rest of the team -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1.5">
+        <div v-for="member in rest" :key="member.name"
+          class="team-card relative overflow-hidden cursor-default">
+          <div class="aspect-[3/4]">
+            <img :src="member.image" :alt="member.name"
+              class="w-full h-full object-cover object-top" />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4">
             <div class="text-cream font-body font-medium text-sm leading-tight">{{ member.name }}</div>
             <div class="text-gold text-xs font-body tracking-wider uppercase mt-0.5">{{ member.role }}</div>
             <div class="text-cream/50 text-xs font-body mt-0.5">{{ member.cred }}</div>
